@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories - Forever Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- LightGallery CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-zoom.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-video.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Audio element for global music -->
+    <audio id="global-music" style="display: none;"></audio>
+    <style>
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 20px;
+        }
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            cursor: pointer; /* we can't use custom cursor on lightgallery easily, but for our wrapper we do */
+        }
+        @media (max-width: 900px) { .masonry-grid { column-count: 2; } }
+        @media (max-width: 600px) { .masonry-grid { column-count: 1; } }
+    </style>
+</head>
+<body>
+    <nav class="global-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Forever Us</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="journey.html" class="nav-link">Our Journey</a>
+                <a href="memories.html" class="nav-link active">Memories</a>
+                <a href="poetry.html" class="nav-link">Poetry</a>
+                <a href="secret.html" class="nav-link">Secret</a>
+                <a href="letter.html" class="nav-link">Letter</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container slide-up-fade" style="padding-top: 120px;">
+        <!-- Music Control Button -->
+        <button id="music-toggle" class="music-player-btn" aria-label="Toggle music" title="Play/Pause Music">
+            <span class="music-icon">🎵</span>
+        </button>
+
+        <div class="text-center" style="margin-bottom: 60px;">
+            <h1 class="text-script" style="font-size: 3.5rem;">Our Memories</h1>
+            <p class="text-sub">A collection of perfectly captured moments.</p>
+        </div>
+
+        <div id="lightgallery" class="masonry-grid">
+            <!-- Gallery items injected by JS -->
+        </div>
+
+        <div class="text-center" style="margin-top: 60px;">
+            <a href="poetry.html" class="btn interactive">Read Our Poetry</a>
+        </div>
+    </main>
+
+    <footer class="global-footer">
+        <span id="teddyEgg" class="teddy-easter-egg interactive">🧸</span>
+    </footer>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <!-- LightGallery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/video/lg-video.min.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/global-music-player.js"></script>
+</body>
+</html>

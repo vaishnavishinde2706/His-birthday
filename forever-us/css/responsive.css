@@ -1,0 +1,87 @@
+/* 
+ * Forever Us - Responsive Design
+ */
+
+@media (max-width: 1024px) {
+  .container {
+    width: 95%;
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .counter-widget {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  /* Timeline Responsive */
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 0;
+    text-align: left !important;
+  }
+  
+  .timeline-item::after {
+    left: 11px !important;
+  }
+  
+  .timeline-item.right {
+    left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .text-script {
+    font-size: 1.5rem;
+  }
+  
+  .btn {
+    padding: 10px 24px;
+    font-size: 0.8rem;
+  }
+  
+  .music-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Disable custom cursor on very small touch devices for better UX */
+  .cursor-dot, .cursor-outline {
+    display: none;
+  }
+  body, button, a {
+    cursor: auto !important;
+  }
+}
