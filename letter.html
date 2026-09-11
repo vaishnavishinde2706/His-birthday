@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Letter - Forever Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Parisienne&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        body {
+            background: #ffffff;
+            color: #333333;
+        }
+
+        .letter-scene {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0 40px;
+        }
+
+        .letter-paper-wrap {
+            position: relative;
+            width: min(680px, 100%);
+            min-height: 420px;
+            margin: 0 auto;
+        }
+
+        .letter-envelope {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            overflow: hidden;
+            cursor: pointer;
+            background: #f2a9bb;
+            border: 1px solid #dc829b;
+        }
+
+        .envelope-body {
+            position: absolute;
+            inset: 18% 0 0;
+            background: #e994aa;
+            clip-path: polygon(0 0, 50% 48%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            inset: 0 0 auto;
+            height: 58%;
+            background: #f2a9bb;
+            clip-path: polygon(0 0, 100% 0, 50% 84%);
+        }
+
+        .envelope-prompt {
+            position: absolute;
+            top: 64%;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .letter-paper {
+            position: relative;
+            background: #ffdce5;
+            color: #4a3037;
+            border: 1px solid #edb1c0;
+            border-radius: 8px;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .letter-scene.is-open .letter-envelope {
+            display: none;
+        }
+
+        .letter-scene.is-open .letter-paper {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .letter-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 8px;
+            color: #333333;
+        }
+
+        .ornament {
+            display: none;
+        }
+
+        .letter-greeting {
+            text-align: center;
+            margin: 20px 0 18px;
+            font-size: 1.6rem;
+            color: #333333;
+            line-height: 1.1;
+        }
+
+        .letter-body {
+            max-width: 620px;
+            margin: 0 auto;
+            color: #333333;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .letter-body p {
+            margin: 0 0 0.8em;
+            text-wrap: pretty;
+        }
+
+        .letter-signoff {
+            margin-top: 18px;
+            text-align: left;
+            font-size: 1rem;
+            color: #333333;
+            line-height: 1.2;
+        }
+
+        .letter-signoff small {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #333333;
+        }
+
+        @media (max-width: 640px) {
+            .letter-paper {
+                padding: 20px 0;
+            }
+
+            .letter-signoff {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="global-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Forever Us</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="journey.html" class="nav-link">Our Journey</a>
+                <a href="memories.html" class="nav-link">Memories</a>
+                <a href="poetry.html" class="nav-link">Poetry</a>
+                <a href="secret.html" class="nav-link">Secret</a>
+                <a href="letter.html" class="nav-link active">Letter</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container slide-up-fade" style="padding-top: 120px;">
+        <button id="music-toggle" class="music-player-btn" aria-label="Toggle letter music" title="Play/Pause Letter Music">
+            <span class="music-icon">🎵</span>
+        </button>
+
+        <div class="text-center" style="margin-bottom: 34px;">
+            <h1 class="text-script" style="font-size: 3.5rem;">My Letter To You</h1>
+        </div>
+
+        <div class="letter-scene">
+            <div class="letter-paper-wrap">
+                <div class="letter-envelope" role="button" tabindex="0" aria-label="Open the letter">
+                    <div class="envelope-body"></div>
+                    <div class="envelope-flap"></div>
+                    <span class="envelope-prompt">Tap here</span>
+                </div>
+
+                <div class="letter-paper" aria-live="polite">
+                    <div class="letter-paper-inner">
+                        <div class="letter-header">
+                            <span class="ornament">✦</span>
+                            <span>My Dearest Love</span>
+                            <span class="ornament">✦</span>
+                        </div>
+
+                        <div class="letter-body" id="letter-body"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="global-footer">
+        <span id="teddyEgg" class="teddy-easter-egg interactive">🧸</span>
+    </footer>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/global-music-player.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const letterScene = document.querySelector('.letter-scene');
+            const envelope = document.querySelector('.letter-envelope');
+            const letterBody = document.getElementById('letter-body');
+            const letterHtml = CONFIG.birthdayLetter
+                .split('\n\n')
+                .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br>')}</p>`)
+                .join('');
+
+            letterBody.innerHTML = letterHtml;
+
+            const openLetter = () => {
+                letterScene.classList.add('is-open');
+                envelope.setAttribute('aria-label', 'Letter opened');
+            };
+
+            envelope.addEventListener('click', openLetter);
+            envelope.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openLetter();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

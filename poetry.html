@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Poetry - Forever Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .poetry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .poem-card {
+            background: #fffdf5; /* Old paper feel */
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(248, 213, 104, 0.3);
+            transition: var(--transition);
+            position: relative;
+        }
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .poem-title {
+            font-family: var(--f-heading);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--c-text-dark);
+        }
+        .poem-date {
+            font-size: 0.8rem;
+            color: var(--c-text-light);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .poem-content {
+            font-family: var(--f-subheading);
+            font-size: 1.2rem;
+            line-height: 2;
+            white-space: pre-wrap;
+            color: var(--c-text-dark);
+        }
+        .poetry-images {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .poetry-image {
+            width: 100%;
+            height: clamp(320px, 38vw, 520px);
+            object-fit: contain;
+            background: #fffdf5;
+            border: 8px solid #fffdf5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        @media (max-width: 700px) {
+            .poetry-images {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="global-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Forever Us</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="journey.html" class="nav-link">Our Journey</a>
+                <a href="memories.html" class="nav-link">Memories</a>
+                <a href="poetry.html" class="nav-link active">Poetry</a>
+                <a href="secret.html" class="nav-link">Secret</a>
+                <a href="letter.html" class="nav-link">Letter</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container slide-up-fade" style="padding-top: 120px;">
+        <div class="text-center" style="margin-bottom: 60px;">
+            <h1 class="text-script" style="font-size: 3.5rem;">Our Poetry</h1>
+            <p class="text-sub">Words written from the heart.</p>
+        </div>
+
+        <h2 class="text-center" style="margin-top: 40px; font-family: var(--f-heading); color: var(--c-secondary);">Poems He Wrote For Me</h2>
+        <div id="poems-by-him" class="poetry-grid"></div>
+
+        <div class="poetry-images">
+            <img class="poetry-image" src="assets/images/poetry/WhatsApp Image 2026-09-08 at 5.46.30 PM.jpeg" alt="Us together">
+            <img class="poetry-image" src="assets/images/poetry/WhatsApp Image 2026-09-08 at 5.46.31 PM.jpeg" alt="Just us">
+            <img class="poetry-image" src="assets/images/poetry/kapde.jpg" alt="A memory of us">
+        </div>
+
+        <div class="text-center" style="margin-top: 80px;">
+            <a href="secret.html" class="btn interactive">Unlock Secrets</a>
+        </div>
+    </main>
+
+    <footer class="global-footer">
+        <span id="teddyEgg" class="teddy-easter-egg interactive">🧸</span>
+    </footer>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const himContainer = document.getElementById('poems-by-him');
+
+            function createPoemCard(poem) {
+                return `
+                    <div class="poem-card">
+                        <h3 class="poem-title">${poem.title}</h3>
+                        <span class="poem-date">${poem.date}</span>
+                        <div class="poem-content">${poem.content}</div>
+                    </div>
+                `;
+            }
+
+            if (CONFIG.poemsByHim) {
+                himContainer.innerHTML = CONFIG.poemsByHim.map(createPoemCard).join('');
+            }
+        });
+    </script>
+</body>
+</html>
